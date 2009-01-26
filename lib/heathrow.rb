@@ -1,4 +1,3 @@
-
 require 'hpricot'
 require 'net/http'
 
@@ -65,7 +64,10 @@ module Heathrow
       
       status_name, status_time = status_string.split
       self.status_name = status_name.capitalize
-      self.status_time = DateTime.parse("#{self.date} #{status_time[0,2]}:#{status_time[2,2]}:00")
+
+      unless status_time.nil?
+        self.status_time = DateTime.parse("#{self.date} #{status_time[0,2]}:#{status_time[2,2]}:00")
+      end
     end
     
     def terminal

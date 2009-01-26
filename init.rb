@@ -21,4 +21,4 @@ def update_flight_data(type)
 end
 
 update_flight_data('arrival')
-update_flight_data('depature')
+update_flight_data('departure')
