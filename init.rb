@@ -1,5 +1,6 @@
 #!/usr/bin/ruby
 
+require 'rubygems'
 require 'lib/flight.rb'
 require 'lib/heathrow.rb'
 
