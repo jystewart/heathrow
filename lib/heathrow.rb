@@ -13,7 +13,7 @@ module Heathrow
   
     class <<self
       def get_result(type)
-        req = Net::HTTP::Get.new(@@path[type])
+        req = Net::HTTP::Get.new(@@paths[type])
         res = Net::HTTP.start(@@hostname) { |http| http.request(req) }
         return res
       end
