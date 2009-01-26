@@ -1,0 +1,10 @@
+== Heathrow ==
+
+Many, many flights leave Heathrow each day and lots of people are interested in following that, whether they're flight enthusiasts, travel planners, or those concerned to track the environmental impact of all those planes.
+
+The data that BAA provide leaves a lot to be desired (no RSS feed?) but it's not so hard to parse and pull into some sort of data store for later activity. That's what this code does, currently using DataMapper and an SQLite database. There are plenty of rough edges, but maybe it'll come in handy.
+
+My hope is to use this to feed some twitter bots who could give regular updates on volumes of flights in and out of each airport. It'd be nice to do some calculations of distances travelled, but there's some disambiguation to do there as origins/destinations are given as city names rather than airport codes. Any suggestions of good ways to manage that gratefully received.
+
+James Stewart - james@jystewart.net
+http://jystewart.net/process/
