@@ -1,3 +1,7 @@
+#!/usr/bin/ruby
+
+require 'lib/flight.rb'
+require 'lib/heathrow.rb'
 
 DataMapper.setup(:default, "sqlite3:///#{Dir.pwd}/flights.db")
 Flight.auto_migrate!
