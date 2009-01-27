@@ -1,10 +1,10 @@
 #!/usr/bin/ruby
 
 require 'rubygems'
-require 'lib/flight.rb'
-require 'lib/heathrow.rb'
+require File.dirname(__FILE__) + 'lib/flight.rb'
+require File.dirname(__FILE__) + 'lib/heathrow.rb'
 
-DataMapper.setup(:default, "sqlite3:///#{Dir.pwd}/flights.db")
+DataMapper.setup(:default, "sqlite3://#{File.dirname(__FILE__)}/flights.db")
 Flight.auto_migrate!
 
 def update_flight_data(type)
