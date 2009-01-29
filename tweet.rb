@@ -13,6 +13,8 @@ DataMapper.setup(:default, "sqlite3://#{this_path}/flights.db")
 gem 'twitter'
 require 'twitter'
 
+# TODO: Make this logic a bit more fluent
+# TODO: Detect whether periods of quiet are at night or during the day and comment on that
 hourly_take_offs = Flight.departed.in_past_hour.count
 hourly_arrivals = Flight.arrived.in_past_hour.count
 two_hourly_take_offs = Flight.departed.since(Time.now - 7200).count
