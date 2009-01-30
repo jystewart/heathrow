@@ -20,7 +20,11 @@ hourly_arrivals = Flight.arrived.in_past_hour.count
 two_hourly_take_offs = Flight.departed.since(Time.now - 7200).count
 two_hourly_arrivals = Flight.arrived.since(Time.now - 7200).count
 time_and_day = DateTime.now.strftime("%H:%M on %A")
-update = "Hello. It's #{time_and_day}"
+
+# A few greetings stolen from http://www.elite.net/~runner/jennifers/hello.htm
+# Just to provide some variety
+greetings = ["G'day", 'Hello', 'Salut', 'guten tag',  'Shlama', 'Hej', 'Hoi', 'Torova', 'Haileo', 'Salaam', 'Ti nâu', 'Óla']
+update = "#{greetings[rand(greetings.length)]}. It's #{time_and_day}"
 send_update = false
 
 if hourly_take_offs > 0 or hourly_arrivals > 0
