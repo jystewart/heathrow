@@ -7,6 +7,8 @@ require File.dirname(__FILE__) + '/lib/heathrow.rb'
 DataMapper.setup(:default, "sqlite3://#{File.dirname(__FILE__)}/flights.db")
 Flight.auto_migrate!
 
+# TODO: Create a FlightNumber if this is a new one
+# TODO: Flesh out FlightNumber and Airport data where appropriate
 def update_flight_data(type)
   Heathrow::Scraper.fetch_array(type).each do |flight_data|
     flight = Flight.first(:identifier => flight_data.identifier) || Flight.new
