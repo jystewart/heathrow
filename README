@@ -6,8 +6,7 @@ The data that BAA provide leaves a lot to be desired (no RSS feed?) but it's not
 
 My hope is to use this to feed some twitter bots who could give regular updates on volumes of flights in and out of each airport. It'd be nice to do some calculations of distances travelled, but there's some disambiguation to do there as origins/destinations are given as city names rather than airport codes. Any suggestions of good ways to manage that gratefully received. Right now my plan is to start building some mapping of flight codes to airport codes that can be used to build that out.
 
-There are the rudiments of a twitter bot in place, which posts to http://twitter.com/heathrowtower as time goes on I hope at the very least to spot unusual delays, etc. and tell the world of them
+There are the rudiments of a twitter bot in place, which posts to http://twitter.com/heathrowtower as time goes on I hope at the very least to spot unusual delays, etc. and tell the world of them.
 
-For now 
 James Stewart - james@jystewart.net
 http://jystewart.net/process/
