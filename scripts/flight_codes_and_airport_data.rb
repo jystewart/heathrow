@@ -1,21 +1,21 @@
 #!/usr/bin/ruby
 require 'rubygems'
-require File.dirname(__FILE__) + "/lib/airport.rb"
-require File.dirname(__FILE__) + "/lib/flight_number.rb"
-DataMapper.setup(:default, "sqlite3:///Users/james/Desktop/flights.db")
+root_path = File.expand_path(File.join(File.dirname(__FILE__), '..'))
+require root_path + "/lib/airport.rb"
+require root_path + "/lib/flight_number.rb"
+
+DataMapper.setup(:default, "sqlite3://#{root_path}/flights.db")
 
 require 'open-uri'
 require 'hpricot'
 
 FlightNumber.all(:conditions => ['origin IS NULL']).each do |fn|
-  begin
-    doc = Hpricot(open("http://www.google.com/search?q=#{fn.number}"))
-    codes = doc.search('ol li:first a').inner_text.match(/\((.+?)\) to .+? \((.+?)\)/)
+  doc = Hpricot(open("http://www.google.com/search?q=#{fn.number}"))
+  codes = doc.search('ol li:first a').inner_text.match(/\((.+?)\) to .+? \((.+?)\)/)
+  if codes
     fn.origin = codes[1]
     fn.destination = codes[2]
     fn.save
-  rescue => e
-    puts "Problem parsing #{fn.number} : #{e.message}"
   end
 end
 
@@ -26,7 +26,7 @@ destinations = repository(:default).adapter.query('SELECT DISTINCT destination F
   Airport.first(:code => code) || Airport.create(:code => code)
 end
 
-wikipedia = Yaml.load_file(File.join(File.dirname(__FILE__), '../data/airports_wikipedia.yml'))
+wikipedia = YAML.load_file(File.join(File.dirname(__FILE__), '../data/airports_wikipedia.yml'))
 
 Airport.all(:conditions => ['latitude IS NULL']).each do |airport|
   if wikipedia['mapping'][airport.code]
