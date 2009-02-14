@@ -12,15 +12,17 @@ class Airport
   has n, :outgoing_flights, :class_name => 'Flight', :through => :outgoing_routes
   
   has n, :incoming_routes, :class_name => 'FlightNumber', :child_key => [:destination]
+  has n, :incoming_flights, :class_name => 'Flight', :through => :incoming_routes
+  
+  before :save, :update_from_wikipedia
   
   def update_from_wikipedia(force = false)
     if new_record? or force
       data = WikipediaAirport.get(airport.code)
       if data
-        airport.latitude = data.latitude
-        airport.longitude = data.longitude
-        airport.name = data.name
-        airport.save
+        self.latitude = data.latitude
+        self.longitude = data.longitude
+        self.name = data.name
       end
     end
   end
