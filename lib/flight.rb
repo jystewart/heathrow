@@ -15,6 +15,8 @@ class Flight
 
   property :created_at, DateTime
   
+  belongs_to :flight_number, :child_key => [:number]
+  
   # Scopes for common queries
   
   def self.departures
@@ -39,5 +41,9 @@ class Flight
   
   def self.since(time)
     all(:status_time.gte => time)
+  end
+  
+  after :create do
+    FlightNumber.first_or_create(:number => self.number)
   end
 end
