@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+
 require File.dirname(__FILE__) + '/../init.rb'
 
 def update_flight_data(type)
