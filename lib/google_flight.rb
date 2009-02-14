@@ -11,6 +11,7 @@ class GoogleFlight
       result = new
       result.origin = codes[1]
       result.destination = codes[2]
+      return result
     end
   end
 end
