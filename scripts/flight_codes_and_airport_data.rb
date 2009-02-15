@@ -2,9 +2,7 @@
 
 require File.dirname(__FILE__) + '/../init.rb'
 
-FlightNumber.all(:conditions => ['origin IS NULL']).each do |fn|
-  fn.update_from_google(true)
-end
+FlightNumber.all(:origin => nil).each { |fn| fn.update_from_google(true) }
 
 origins = repository(:default).adapter.query('SELECT DISTINCT origin FROM flight_numbers')
 destinations = repository(:default).adapter.query('SELECT DISTINCT destination FROM flight_numbers')
@@ -13,6 +11,4 @@ destinations = repository(:default).adapter.query('SELECT DISTINCT destination F
   Airport.first_or_create(:code => code)
 end
 
-Airport.all(:conditions => ['latitude IS NULL']).each do |airport|
-  airport.update_from_wikipedia(true)
-end
+Airport.all(:latitude => nil).each { |a| a.update_from_wikipedia(true) }
