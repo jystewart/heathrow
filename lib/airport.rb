@@ -18,7 +18,7 @@ class Airport
   
   def update_from_wikipedia(force = false)
     if new_record? or force
-      data = WikipediaAirport.get(airport.code)
+      data = WikipediaAirport.get(self.code)
       if data
         self.latitude = data.latitude
         self.longitude = data.longitude
