@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'hpricot'
+require 'yaml'
 
 class WikipediaAirport
   attr_accessor :longitude, :latitude, :name
@@ -7,14 +8,14 @@ class WikipediaAirport
 
   class << self
     def mapping
-      self.url_mapping ||= Yaml.load_file(File.join(HEATHROW_ROOT, 'data/airports_wikipedia.yml'))['mapping']
+      self.url_mapping ||= YAML.load_file(File.join(HEATHROW_ROOT, 'data/airports_wikipedia.yml'))['mapping']
     end
           
     def uri(airport_code)
-      if mapping[airport.code]
-        doc = Hpricot(open("http://en.wikipedia.org/wiki/#{mapping[airport.code]}"))
+      if mapping[airport_code]
+        "http://en.wikipedia.org/wiki/#{mapping[airport_code]}"
       else
-        doc = Hpricot(open("http://en.wikipedia.org/wiki/#{airport.code}"))
+        "http://en.wikipedia.org/wiki/#{airport_code}"
       end
     end
   
