@@ -31,6 +31,10 @@ class WikipediaAirport
         airport.name = doc.search('h1').inner_text
         return airport
       end
+    rescue OpenURI::HTTPError
+      return nil
+    rescue URI::InvalidURIError
+      puts "Bad URI? #{uri(airport_code)}"
     end
   end
 end
