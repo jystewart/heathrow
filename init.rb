@@ -3,7 +3,7 @@
 require 'rubygems'
 require 'datamapper'
 
-Dir.glob(File.join(File.dirname(__FILE__), 'lib/*.rb')).each { |f| require f  }
-DataMapper.setup(:default, "sqlite3://#{File.dirname(__FILE__)}/flights.db")
+HEATHROW_ROOT = File.expand_path(File.dirname(__FILE__))
 
-HEATHROW_ROOT = File.dirname(__FILE__)
+Dir.glob(File.join(HEATHROW_ROOT, 'lib/*.rb')).each { |f| require f  }
+DataMapper.setup(:default, "sqlite3://#{HEATHROW_ROOT}/flights.db")
