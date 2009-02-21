@@ -20,8 +20,8 @@ two_hourly_arrivals = Flight.arrived.since(Time.now - 7200).count
 time_and_day = DateTime.now.strftime("%H:%M on %A")
 
 # A few greetings stolen from http://www.elite.net/~runner/jennifers/hello.htm
-# Just to provide some variety
-greetings = ["G'day", 'Hello', 'Salut', 'guten tag',  'Shlama', 'Hej', 'Hoi', 'Torova', 'Haileo', 'Salaam', 'Ti nâu', 'Óla']
+# Just to provide some variety, and a few suggested by Luke Randall
+greetings = ["Molo", "!hoi ca", "Thobela", "G'day", "Hallo", "Dumela", "Makadi", "Sawubona", 'Hello', 'Salut', 'guten tag',  'Shlama', 'Hej', 'Hoi', 'Torova', 'Haileo', 'Salaam', 'Ti nâu', 'Óla']
 update = "#{greetings[rand(greetings.length)]}. It's #{time_and_day}"
 send_update = false
 
